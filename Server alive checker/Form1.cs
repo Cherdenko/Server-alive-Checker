@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Timers;
 using System.Diagnostics;
-/*todo
+/**todo
  * need to find a valid way to log if server is alive and when
  * interchangeable options for other games
  * a config file
@@ -29,7 +29,7 @@ using System.Diagnostics;
  * 
  * 
  * 
- * /
+ **/
 namespace Server_alive_checker
 {
     public partial class Form1 : Form
@@ -50,8 +50,9 @@ namespace Server_alive_checker
         private System.Windows.Forms.Timer timer2;
         private int counter = 10;
         public int running = 2;
-        public int refresh = 1;
-        int count = 0;
+        public int refresh = 60;
+        bool StartBat;
+        string StartCommand;
 
 
         public Form1()
@@ -59,14 +60,28 @@ namespace Server_alive_checker
             InitializeComponent();
             Start();
         }
-        private void Start()
+         void Start()
         {
 
             var currentDirectory = System.IO.Directory.GetCurrentDirectory();
             if (File.Exists(currentDirectory + "/DayZServer_x64.exe"))
             {
                 picyesno.BackColor = System.Drawing.Color.SpringGreen;
-                label1.Text = "File exists";
+                label1.Text = "DayZServer_x64.exe exists";
+                
+                if (File.Exists(currentDirectory + "/Start.bat") || File.Exists(currentDirectory+"startserver.bat"))
+                {
+                    if (File.Exists(currentDirectory+ "/Start.Bat"))
+                    {
+                      StartBat = true;
+                    }
+                    label3.Text = "Found Starting Bat file";
+                }
+                else
+                {
+                    label3.Text = "Bat file not found. Terminating now";
+                  
+                }
                 Server_alive_checker();
 
             }
@@ -78,10 +93,10 @@ namespace Server_alive_checker
                 timer1.Tick += new EventHandler(Timer1_Tick);
                 timer1.Interval = 1000; // 1 second
                 timer1.Start();
-
+                label3.Hide();
                 label2.Text = counter.ToString();
                 label1.Text = "Seems like there is no DayZServer_x64.exe file in the directory of the Alive Checker. Programm will exit in";
-                textBox1.Hide();
+                
 
 
             }
@@ -90,33 +105,43 @@ namespace Server_alive_checker
 
 
 
-
+            // here we go check, if the process (in our case DayZ SA) is still alive. currently getting reworked, as of non functionality with .bat files.
             void Server_alive_checker()
             {
-                int count =+ 1;
-                if (count > 10)
+                if (StartBat)
                 {
-                    textBox1.Text = String.Empty;
+                    StartCommand = "/start.bat";
                 }
+                else
+                {
+                    StartCommand = "/DayZServer_x64.exe";
+                }
+                
                 Process thisProc = Process.GetCurrentProcess();
                 if (IsProcessOpen("DayZ") == false)
                 {
                     label1.Text="Application not running";
                     if (running == 2)
                     {
-                       textBox1.Text += DateTime.Now + " Starting up for the first time." + Environment.NewLine;
+                        //small logging tool
+                       label1.Text += " " + DateTime.Now + " Starting up for the first time.";
+
+                        /*  Process Dayz = new Process();
+                          Dayz.StartInfo.FileName = currentDirectory + StartCommand;
+                          Dayz.Start();// currently getting a nullpointer exception here
+                         */
+                        var processInfo = new ProcessStartInfo("cmd.exe", "/c" + currentDirectory+ "\"start.bat\"");
+                        var process = Process.Start(processInfo);
+                        process.Start();
                         
-                        Process Dayz = new Process();
-                        Dayz.StartInfo.FileName = currentDirectory + "/DayZServer_x64.exe";
-                        Dayz.Start();
-                       
                         Refreshrate();
                     }
                     else
                     {
-                        textBox1.Text += DateTime.Now + " Server crashed. Restarting now." + Environment.NewLine;
+                        //small logging tool
+                        label1.Text += " " + DateTime.Now + " Server crashed. Restarting now." ;
                         Process Dayz = new Process();
-                        Dayz.StartInfo.FileName = currentDirectory + "/DayZServer_x64.exe";
+                        Dayz.StartInfo.FileName = currentDirectory + StartCommand;
                         Dayz.Start();
                         counter = refresh;
                         Refreshrate();
@@ -129,7 +154,7 @@ namespace Server_alive_checker
                     
                         // If ther is more than one, than it is already running.
                         label1.Text="Application is already running.";
-                        textBox1.Text += DateTime.Now + " Server is running without problems :)" + Environment.NewLine;
+                        label1.Text +=" "+ DateTime.Now + " Server is running without problems :)" ;
                         running = 1;
                         counter = refresh;
                         Refreshrate();
@@ -137,7 +162,7 @@ namespace Server_alive_checker
 
                 }
             }
-
+            // used for the refresh 
             void Refreshrate()
             {
                 timer2 = new System.Windows.Forms.Timer();
