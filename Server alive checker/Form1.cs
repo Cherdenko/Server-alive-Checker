@@ -59,6 +59,7 @@ namespace Server_alive_checker
         {
             InitializeComponent();
             Start();
+            label4.Text = "Server last crashed: never";
         }
          void Start()
         {
@@ -114,7 +115,7 @@ namespace Server_alive_checker
                 }
                 else
                 {
-                    StartCommand = "/DayZServer_x64.exe";
+                    StartCommand = "/startserver.bat";
                 }
                 
                 Process thisProc = Process.GetCurrentProcess();
@@ -124,23 +125,19 @@ namespace Server_alive_checker
                     if (running == 2)
                     {
                         //small logging tool
-                       label1.Text += " " + DateTime.Now + " Starting up for the first time.";
+                       label1.Text = " " + DateTime.Now + " Starting up for the first time.";
 
-                        /*  Process Dayz = new Process();
+                          Process Dayz = new Process();
                           Dayz.StartInfo.FileName = currentDirectory + StartCommand;
-                          Dayz.Start();// currently getting a nullpointer exception here
-                         */
-                        var processInfo = new ProcessStartInfo("cmd.exe", "/c" + currentDirectory+ "\"start.bat\"");
-                        var process = Process.Start(processInfo);
-                        process.Start();
-                        
+                          Dayz.Start(); // working again without any problems
                         Refreshrate();
                     }
                     else
                     {
                         //small logging tool
-                        label1.Text += " " + DateTime.Now + " Server crashed. Restarting now." ;
+                        label1.Text = " " + DateTime.Now + " Server crashed. Restarting now." ;
                         Process Dayz = new Process();
+                        label4.Text = " Server last crashed at " + DateTime.Now;
                         Dayz.StartInfo.FileName = currentDirectory + StartCommand;
                         Dayz.Start();
                         counter = refresh;
@@ -153,7 +150,7 @@ namespace Server_alive_checker
                     
                     
                         // If ther is more than one, than it is already running.
-                        label1.Text="Application is already running.";
+                        label1.Text="Application is running.";
                         label1.Text +=" "+ DateTime.Now + " Server is running without problems :)" ;
                         running = 1;
                         counter = refresh;
