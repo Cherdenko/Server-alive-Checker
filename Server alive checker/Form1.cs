@@ -53,13 +53,26 @@ namespace Server_alive_checker
         public int refresh = 60;
         bool StartBat;
         string StartCommand;
+        bool settingsSet = false;
 
 
         public Form1()
         {
             InitializeComponent();
-            Start();
-            label4.Text = "Server last crashed: never";
+            if (!settingsSet)
+            {
+                label1.Text = "Please go to the settings first, before you try and startup the server";
+            }
+            else
+            {
+                label1.Hide();
+            }
+            label4.Hide();
+            
+            label2.Hide();
+            label3.Hide();
+                
+            
         }
          void Start()
         {
@@ -67,22 +80,10 @@ namespace Server_alive_checker
             var currentDirectory = System.IO.Directory.GetCurrentDirectory();
             if (File.Exists(currentDirectory + "/DayZServer_x64.exe"))
             {
+                label4.Text = "Server last crashed: never";
                 picyesno.BackColor = System.Drawing.Color.SpringGreen;
                 label1.Text = "DayZServer_x64.exe exists";
-                
-                if (File.Exists(currentDirectory + "/Start.bat") || File.Exists(currentDirectory+"startserver.bat"))
-                {
-                    if (File.Exists(currentDirectory+ "/Start.Bat"))
-                    {
-                      StartBat = true;
-                    }
-                    label3.Text = "Found Starting Bat file";
-                }
-                else
-                {
-                    label3.Text = "Bat file not found. Terminating now";
-                  
-                }
+                Console.WriteLine(currentDirectory + StartCommand);
                 Server_alive_checker();
 
             }
@@ -111,11 +112,11 @@ namespace Server_alive_checker
             {
                 if (StartBat)
                 {
-                    StartCommand = "/start.bat";
+                    StartCommand = "\\DayZServer_x64.exe";
                 }
                 else
                 {
-                    StartCommand = "/startserver.bat";
+                    StartCommand = "\\DayZServer_x64.exe";
                 }
                 
                 Process thisProc = Process.GetCurrentProcess();
@@ -124,12 +125,26 @@ namespace Server_alive_checker
                     label1.Text="Application not running";
                     if (running == 2)
                     {
+                        /**
+                         * 
+                         * 
+                         * 
+                         * 
+                         * 
+                        **/
+
+                        string cfg = Properties.Settings.Default.configBoxPath;
+                        string profiles = Properties.Settings.Default.profileBoxPath;
+                        string port = Properties.Settings.Default.Port;
                         //small logging tool
                        label1.Text = " " + DateTime.Now + " Starting up for the first time.";
+                        
 
-                          Process Dayz = new Process();
-                          Dayz.StartInfo.FileName = currentDirectory + StartCommand;
-                          Dayz.Start(); // working again without any problems
+                          ProcessStartInfo Dayz = new ProcessStartInfo();
+                          Dayz.FileName = currentDirectory + StartCommand;
+                          Dayz.Arguments = "-config="+cfg+ " -profiles="+profiles+ " -port"+ port ;
+
+                         Process.Start(Dayz); // working again without any problems
                         Refreshrate();
                     }
                     else
@@ -195,7 +210,25 @@ namespace Server_alive_checker
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form2 settingsForm = new Form2();
+            settingsForm.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            bool saved = Properties.Settings.Default.saved;
+            if (saved)
+            {
+                 Start();
+            }
+            else
+            {
+                MessageBox.Show("Settings not found. Cannot start");
+            }
+        }
+    }
 
     }
 
