@@ -69,5 +69,162 @@ namespace Server_alive_checker.Properties {
                 this["saved"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool restarts {
+            get {
+                return ((bool)(this["restarts"]));
+            }
+            set {
+                this["restarts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string game {
+            get {
+                return ((string)(this["game"]));
+            }
+            set {
+                this["game"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime restartTime1 {
+            get {
+                return ((global::System.DateTime)(this["restartTime1"]));
+            }
+            set {
+                this["restartTime1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime restartTime2 {
+            get {
+                return ((global::System.DateTime)(this["restartTime2"]));
+            }
+            set {
+                this["restartTime2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime restartTime3 {
+            get {
+                return ((global::System.DateTime)(this["restartTime3"]));
+            }
+            set {
+                this["restartTime3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime restartTime4 {
+            get {
+                return ((global::System.DateTime)(this["restartTime4"]));
+            }
+            set {
+                this["restartTime4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime restartTime5 {
+            get {
+                return ((global::System.DateTime)(this["restartTime5"]));
+            }
+            set {
+                this["restartTime5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime restartTime6 {
+            get {
+                return ((global::System.DateTime)(this["restartTime6"]));
+            }
+            set {
+                this["restartTime6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime restartTime7 {
+            get {
+                return ((global::System.DateTime)(this["restartTime7"]));
+            }
+            set {
+                this["restartTime7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime restartTime8 {
+            get {
+                return ((global::System.DateTime)(this["restartTime8"]));
+            }
+            set {
+                this["restartTime8"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime restartTime9 {
+            get {
+                return ((global::System.DateTime)(this["restartTime9"]));
+            }
+            set {
+                this["restartTime9"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime restartTime10 {
+            get {
+                return ((global::System.DateTime)(this["restartTime10"]));
+            }
+            set {
+                this["restartTime10"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime Einstellung {
+            get {
+                return ((global::System.DateTime)(this["Einstellung"]));
+            }
+            set {
+                this["Einstellung"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int box {
+            get {
+                return ((int)(this["box"]));
+            }
+            set {
+                this["box"] = value;
+            }
+        }
     }
 }

@@ -2,7 +2,7 @@ C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\bin\Re
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\bin\Release\Server alive checker.exe
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\bin\Release\Server alive checker.pdb
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Release\Server_alive_checker.Form1.resources
-C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Release\Server_alive_checker.Form2.resources
+C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Release\Server_alive_checker.Settings.resources
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Release\Server_alive_checker.Properties.Resources.resources
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Release\Server alive checker.csproj.GenerateResource.cache
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Release\Server alive checker.csproj.CoreCompileInputs.cache

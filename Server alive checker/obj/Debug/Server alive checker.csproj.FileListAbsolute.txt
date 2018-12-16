@@ -2,9 +2,10 @@ C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\bin\De
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\bin\Debug\Server alive checker.exe
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\bin\Debug\Server alive checker.pdb
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Debug\Server_alive_checker.Form1.resources
-C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Debug\Server_alive_checker.Form2.resources
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Debug\Server_alive_checker.Properties.Resources.resources
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Debug\Server alive checker.csproj.GenerateResource.cache
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Debug\Server alive checker.csproj.CoreCompileInputs.cache
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Debug\Server alive checker.exe
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Debug\Server alive checker.pdb
+C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Debug\Server_alive_checker.Settings.resources
+C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Debug\Server alive checker.csprojAssemblyReference.cache

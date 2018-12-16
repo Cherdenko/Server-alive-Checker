@@ -1,6 +1,6 @@
 ﻿namespace Server_alive_checker
 {
-    partial class Form2
+    partial class Settings
     {
         /// <summary>
         /// Required designer variable.
@@ -37,15 +37,26 @@
             this.label6 = new System.Windows.Forms.Label();
             this.portBox = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label11 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.configBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.modBox = new System.Windows.Forms.TextBox();
             this.profileBox = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.restartBox1 = new System.Windows.Forms.DateTimePicker();
+            this.restartBox2 = new System.Windows.Forms.DateTimePicker();
+            this.restartBox3 = new System.Windows.Forms.DateTimePicker();
+            this.restartBox4 = new System.Windows.Forms.DateTimePicker();
+            this.restartBox5 = new System.Windows.Forms.DateTimePicker();
+            this.restartBox6 = new System.Windows.Forms.DateTimePicker();
+            this.restartBox7 = new System.Windows.Forms.DateTimePicker();
+            this.restartBox8 = new System.Windows.Forms.DateTimePicker();
+            this.restartBox9 = new System.Windows.Forms.DateTimePicker();
+            this.restartBox10 = new System.Windows.Forms.DateTimePicker();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -95,7 +106,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(407, 9);
+            this.label5.Location = new System.Drawing.Point(140, 63);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 13);
             this.label5.TabIndex = 4;
@@ -119,46 +130,34 @@
             this.portBox.Size = new System.Drawing.Size(55, 20);
             this.portBox.TabIndex = 6;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label11.Location = new System.Drawing.Point(12, 170);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(70, 15);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Restart times";
+            this.toolTip1.SetToolTip(this.label11, "Format of the Restarts: [\"HH:mm]");
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(88, 165);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(118, 23);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "add new Restart";
+            this.toolTip1.SetToolTip(this.button1, "Format of the Restarts: [\"HH:mm]");
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // configBox
             // 
             this.configBox.Location = new System.Drawing.Point(12, 79);
             this.configBox.Name = "configBox";
             this.configBox.Size = new System.Drawing.Size(88, 20);
             this.configBox.TabIndex = 7;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 164);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(70, 13);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Restart every";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(86, 161);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(48, 21);
-            this.comboBox1.TabIndex = 10;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(140, 164);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(96, 13);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "hours, starting from";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "";
-            this.dateTimePicker1.Location = new System.Drawing.Point(242, 162);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(68, 20);
-            this.dateTimePicker1.TabIndex = 12;
             // 
             // label9
             // 
@@ -193,19 +192,147 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // Form2
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(484, 11);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(35, 13);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Game";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(449, 27);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(102, 21);
+            this.comboBox2.TabIndex = 18;
+            // 
+            // restartBox1
+            // 
+            this.restartBox1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.restartBox1.Location = new System.Drawing.Point(12, 194);
+            this.restartBox1.Name = "restartBox1";
+            this.restartBox1.ShowUpDown = true;
+            this.restartBox1.Size = new System.Drawing.Size(70, 20);
+            this.restartBox1.TabIndex = 21;
+            // 
+            // restartBox2
+            // 
+            this.restartBox2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.restartBox2.Location = new System.Drawing.Point(88, 194);
+            this.restartBox2.Name = "restartBox2";
+            this.restartBox2.ShowUpDown = true;
+            this.restartBox2.Size = new System.Drawing.Size(70, 20);
+            this.restartBox2.TabIndex = 22;
+            // 
+            // restartBox3
+            // 
+            this.restartBox3.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.restartBox3.Location = new System.Drawing.Point(164, 194);
+            this.restartBox3.Name = "restartBox3";
+            this.restartBox3.ShowUpDown = true;
+            this.restartBox3.Size = new System.Drawing.Size(70, 20);
+            this.restartBox3.TabIndex = 23;
+            // 
+            // restartBox4
+            // 
+            this.restartBox4.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.restartBox4.Location = new System.Drawing.Point(240, 194);
+            this.restartBox4.Name = "restartBox4";
+            this.restartBox4.ShowUpDown = true;
+            this.restartBox4.Size = new System.Drawing.Size(70, 20);
+            this.restartBox4.TabIndex = 24;
+            // 
+            // restartBox5
+            // 
+            this.restartBox5.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.restartBox5.Location = new System.Drawing.Point(316, 194);
+            this.restartBox5.Name = "restartBox5";
+            this.restartBox5.ShowUpDown = true;
+            this.restartBox5.Size = new System.Drawing.Size(70, 20);
+            this.restartBox5.TabIndex = 25;
+            // 
+            // restartBox6
+            // 
+            this.restartBox6.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.restartBox6.Location = new System.Drawing.Point(392, 194);
+            this.restartBox6.Name = "restartBox6";
+            this.restartBox6.ShowUpDown = true;
+            this.restartBox6.Size = new System.Drawing.Size(70, 20);
+            this.restartBox6.TabIndex = 26;
+            // 
+            // restartBox7
+            // 
+            this.restartBox7.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.restartBox7.Location = new System.Drawing.Point(468, 194);
+            this.restartBox7.Name = "restartBox7";
+            this.restartBox7.ShowUpDown = true;
+            this.restartBox7.Size = new System.Drawing.Size(70, 20);
+            this.restartBox7.TabIndex = 27;
+            // 
+            // restartBox8
+            // 
+            this.restartBox8.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.restartBox8.Location = new System.Drawing.Point(12, 220);
+            this.restartBox8.Name = "restartBox8";
+            this.restartBox8.ShowUpDown = true;
+            this.restartBox8.Size = new System.Drawing.Size(70, 20);
+            this.restartBox8.TabIndex = 28;
+            // 
+            // restartBox9
+            // 
+            this.restartBox9.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.restartBox9.Location = new System.Drawing.Point(88, 220);
+            this.restartBox9.Name = "restartBox9";
+            this.restartBox9.ShowUpDown = true;
+            this.restartBox9.Size = new System.Drawing.Size(70, 20);
+            this.restartBox9.TabIndex = 29;
+            // 
+            // restartBox10
+            // 
+            this.restartBox10.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.restartBox10.Location = new System.Drawing.Point(164, 220);
+            this.restartBox10.Name = "restartBox10";
+            this.restartBox10.ShowUpDown = true;
+            this.restartBox10.Size = new System.Drawing.Size(70, 20);
+            this.restartBox10.TabIndex = 30;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(212, 165);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(105, 23);
+            this.button2.TabIndex = 31;
+            this.button2.Text = "remove restart";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(598, 386);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.restartBox10);
+            this.Controls.Add(this.restartBox9);
+            this.Controls.Add(this.restartBox8);
+            this.Controls.Add(this.restartBox7);
+            this.Controls.Add(this.restartBox6);
+            this.Controls.Add(this.restartBox5);
+            this.Controls.Add(this.restartBox4);
+            this.Controls.Add(this.restartBox3);
+            this.Controls.Add(this.restartBox2);
+            this.Controls.Add(this.restartBox1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.profileBox);
             this.Controls.Add(this.modBox);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.configBox);
             this.Controls.Add(this.portBox);
             this.Controls.Add(this.label6);
@@ -214,8 +341,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "Settings";
+            this.Text = "Settings";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,13 +360,24 @@
         private System.Windows.Forms.TextBox portBox;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TextBox configBox;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox modBox;
         private System.Windows.Forms.TextBox profileBox;
         public System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker restartBox1;
+        private System.Windows.Forms.DateTimePicker restartBox2;
+        private System.Windows.Forms.DateTimePicker restartBox3;
+        private System.Windows.Forms.DateTimePicker restartBox4;
+        private System.Windows.Forms.DateTimePicker restartBox5;
+        private System.Windows.Forms.DateTimePicker restartBox6;
+        private System.Windows.Forms.DateTimePicker restartBox7;
+        private System.Windows.Forms.DateTimePicker restartBox8;
+        private System.Windows.Forms.DateTimePicker restartBox9;
+        private System.Windows.Forms.DateTimePicker restartBox10;
+        private System.Windows.Forms.Button button2;
     }
 }
