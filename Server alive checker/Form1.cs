@@ -50,36 +50,38 @@ namespace Server_alive_checker
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private static System.Timers.Timer timer;
-        public event ElapsedEventHandler Elapsed;
+       // public event ElapsedEventHandler Elapsed;
 
         public int counter = 120;
         public int running = 2;
         public int refresh = 60;
         string gameselected;
-        
-        
-        
-        
-       
+        bool restartTimerRunning = false;
+        bool initializedrestartTimer = false;
+
+
+
+
+
+
 
 
         public Form1()
         {
             InitializeComponent();
+            labelHide();
             if (!Properties.Settings.Default.saved)
             {
                 MessageBox.Show("Since this is your first start, please go to the settings first");
-                
+          
             }
             else
             {
                 DateTime userTime = Properties.Settings.Default.restartTime1;
-                MessageBox.Show(userTime.ToString("MM'/'dd'/'yyyy HH':'mm':'ss.fff"));
-                label1.Hide();
-                label4.Hide();
-
-                label2.Hide();
-                label3.Hide();
+                //used for debug only
+              //  MessageBox.Show(userTime.ToString("MM'/'dd'/'yyyy HH':'mm':'ss.fff"));
+                
+               
             }
             if (Properties.Settings.Default.restarts)
             {
@@ -89,17 +91,35 @@ namespace Server_alive_checker
                 
             
         }
+        // here we are deavctivating the labels coz it looks like shit elseway
+        void labelHide()
+        {
+            label1.Hide();
+            label4.Hide();
+            label2.Hide();
+            label3.Hide();
+            label5.Hide();
+            label7.Text = "";
+            label8.Text = "";
+            label9.Text = "";
+            label10.Text = "";
+            label11.Text = "";
+            label12.Text = "";
+            label13.Text = "";
+            label14.Text = "";
+            label15.Text = "";
+            label16.Text = "";
+
+        }
+        // main start
          void Start()
         {
             label1.Show();
             label4.Show();
-
             label2.Show();
             label3.Show();
-            // those next 2 lines are improtant for the restarts
-            
-    
-            // never edit unless you know what you are doing
+            label5.Show();
+
             int x = Int32.Parse(Properties.Settings.Default.game);
 
             switch (x) { 
@@ -159,7 +179,12 @@ namespace Server_alive_checker
                     label1.Text="Application not running";
                     if (running == 2)
                     {
-                        restartTimerExec();
+                        if (!restartTimerRunning)
+                        {
+
+                            restartTimerRunning = false;
+                            restartTimerExec();
+                        }
                         /**
                          * 
                          * 
@@ -171,13 +196,16 @@ namespace Server_alive_checker
                         string cfg = Properties.Settings.Default.configBoxPath;
                         string profiles = Properties.Settings.Default.profileBoxPath;
                         string port = Properties.Settings.Default.Port;
+                        string BePath = Properties.Settings.Default.BePath;
+                        string otherArmaParBox = Properties.Settings.Default.otherArmaParBox;
+                        string mods = Properties.Settings.Default.mods;
                         //small logging tool
-                       label1.Text = " " + DateTime.Now + " Starting up for the first time.";
+                        label1.Text = " " + DateTime.Now + " Starting up for the first time.";
                         
 
                           ProcessStartInfo Dayz = new ProcessStartInfo();
                         Dayz.FileName = currentDirectory + gameselected;
-                          Dayz.Arguments = "-config="+cfg+ " -profiles="+profiles+ " -port"+ port ;
+                          Dayz.Arguments = "-config="+cfg+ " -profiles="+profiles+ " -port"+ port + " -BEPath=" + BePath + " " + otherArmaParBox + " -mod=" + mods;
 
                          Process.Start(Dayz); // working again without any problems
                         Refreshrate();
@@ -187,13 +215,16 @@ namespace Server_alive_checker
                         string cfg = Properties.Settings.Default.configBoxPath;
                         string profiles = Properties.Settings.Default.profileBoxPath;
                         string port = Properties.Settings.Default.Port;
+                        string BePath = Properties.Settings.Default.BePath;
+                        string otherArmaParBox = Properties.Settings.Default.otherArmaParBox;
+                        string mods = Properties.Settings.Default.mods;
                         //small logging tool
                         label1.Text = " " + DateTime.Now + " Server crashed. Restarting now." ;
                        
                         label4.Text = " Server last crashed at " + DateTime.Now;
                         ProcessStartInfo Dayz = new ProcessStartInfo();
                         Dayz.FileName = currentDirectory + gameselected;
-                        Dayz.Arguments = "-config=" + cfg + " -profiles=" + profiles + " -port" + port;
+                        Dayz.Arguments = "-config=" + cfg + " -profiles=" + profiles + " -port" + port + " -BEPath="+BePath +" "+ otherArmaParBox + " -mod="+ mods;
 
                         Process.Start(Dayz); // working again without any problem
                         counter = refresh;
@@ -219,26 +250,159 @@ namespace Server_alive_checker
             {
                 Console.WriteLine("Fick dich Waal");
                 DateTime currentTime = DateTime.Now;
-                DateTime userTime1 = Properties.Settings.Default.restartTime1;
-                DateTime userTime2 = Properties.Settings.Default.restartTime1;
-                DateTime userTime3 = Properties.Settings.Default.restartTime1;
-                DateTime userTime4 = Properties.Settings.Default.restartTime1;
-                DateTime userTime5 = Properties.Settings.Default.restartTime1;
-                DateTime userTime6 = Properties.Settings.Default.restartTime1;
-                DateTime userTime7 = Properties.Settings.Default.restartTime1;
-                DateTime userTime8 = Properties.Settings.Default.restartTime1;
-                DateTime userTime9 = Properties.Settings.Default.restartTime1;
-                DateTime userTime10 = Properties.Settings.Default.restartTime1;
-
                 
-                if ((currentTime.Hour == userTime1.Hour && currentTime.Minute == userTime1.Minute && currentTime.Second == userTime1.Second) || (currentTime.Hour == userTime2.Hour && currentTime.Minute == userTime2.Minute && currentTime.Second == userTime2.Second) || (currentTime.Hour == userTime3.Hour && currentTime.Minute == userTime3.Minute && currentTime.Second == userTime3.Second) || (currentTime.Hour == userTime4.Hour && currentTime.Minute == userTime4.Minute && currentTime.Second == userTime4.Second) || (currentTime.Hour == userTime5.Hour && currentTime.Minute == userTime5.Minute && currentTime.Second == userTime5.Second) || (currentTime.Hour == userTime6.Hour && currentTime.Minute == userTime6.Minute && currentTime.Second == userTime6.Second) || (currentTime.Hour == userTime7.Hour && currentTime.Minute == userTime7.Minute && currentTime.Second == userTime7.Second)|| (currentTime.Hour == userTime8.Hour && currentTime.Minute == userTime8.Minute && currentTime.Second == userTime8.Second) || (currentTime.Hour == userTime9.Hour && currentTime.Minute == userTime9.Minute && currentTime.Second == userTime9.Second) || (currentTime.Hour == userTime10.Hour && currentTime.Minute == userTime10.Minute && currentTime.Second == userTime10.Second))
+                    DateTime userTime1 = Properties.Settings.Default.restartTime1;
+                    DateTime userTime2 = Properties.Settings.Default.restartTime2;
+                    DateTime userTime3 = Properties.Settings.Default.restartTime3;
+                    DateTime userTime4 = Properties.Settings.Default.restartTime4;
+                    DateTime userTime5 = Properties.Settings.Default.restartTime5;
+                    DateTime userTime6 = Properties.Settings.Default.restartTime6;
+                    DateTime userTime7 = Properties.Settings.Default.restartTime7;
+                    DateTime userTime8 = Properties.Settings.Default.restartTime8;
+                    DateTime userTime9 = Properties.Settings.Default.restartTime9;
+                    DateTime userTime10 = Properties.Settings.Default.restartTime10;
+                if (!initializedrestartTimer)
+                {
+                    label7.Text = userTime1.ToString("HH':'mm");
+                    label8.Text = userTime2.ToString("HH':'mm");
+                    label9.Text = userTime3.ToString("HH':'mm");
+                    label10.Text = userTime4.ToString("HH':'mm");
+                    label11.Text = userTime5.ToString("HH':'mm");
+                    label12.Text = userTime6.ToString("HH':'mm");
+                    label13.Text = userTime7.ToString("HH':'mm");
+                    label14.Text = userTime8.ToString("HH':'mm");
+                    label15.Text = userTime9.ToString("HH':'mm");
+                    label16.Text = userTime10.ToString("HH':'mm");
+                }
+
+                if (Properties.Settings.Default.r1a == true) {
+                if (currentTime.Hour == userTime1.Hour && currentTime.Minute == userTime1.Minute && currentTime.Second == userTime1.Second)
                 {
                     timer.Stop();
                     RestartServer();
                     Console.WriteLine("Fick dich Waal");
-                    MessageBox.Show(userTime1.ToString("MM'/'dd'/'yyyy HH':'mm':'ss.fff"));
+                    //MessageBox.Show(userTime1.ToString("HH':'mm"));
+                    label3.Text = "Server succesfully restarted @" +DateTime.Now;
+                    restartTimerExec();
                 }
-                
+                }
+                if (Properties.Settings.Default.r2a == true)
+                {
+                    if (currentTime.Hour == userTime2.Hour && currentTime.Minute == userTime2.Minute && currentTime.Second == userTime2.Second)
+                {
+                    timer.Stop();
+                    RestartServer();
+                    Console.WriteLine("Fick dich Waal");
+                    //MessageBox.Show(userTime2.ToString("HH':'mm"));
+                    label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                    restartTimerExec();
+                }
+            }
+                if (Properties.Settings.Default.r3a == true)
+                {
+                    if (currentTime.Hour == userTime3.Hour && currentTime.Minute == userTime3.Minute && currentTime.Second == userTime3.Second)
+                    {
+                        timer.Stop();
+                        RestartServer();
+                        Console.WriteLine("Fick dich Waal");
+
+                        // MessageBox.Show(userTime3.ToString("HH':'mm"));
+                        label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                        restartTimerExec();
+                    }
+                }
+                if (Properties.Settings.Default.r4a == true)
+                {
+                    if (currentTime.Hour == userTime4.Hour && currentTime.Minute == userTime4.Minute && currentTime.Second == userTime4.Second)
+                    {
+                        timer.Stop();
+                        RestartServer();
+                        Console.WriteLine("Fick dich Waal");
+
+                        // MessageBox.Show(userTime3.ToString("HH':'mm"));
+                        label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                        restartTimerExec();
+                    }
+                }
+                if (Properties.Settings.Default.r5a == true)
+                {
+                    if (currentTime.Hour == userTime5.Hour && currentTime.Minute == userTime5.Minute && currentTime.Second == userTime5.Second)
+                    {
+                        timer.Stop();
+                        RestartServer();
+                        Console.WriteLine("Fick dich Waal");
+
+                        // MessageBox.Show(userTime3.ToString("HH':'mm"));
+                        label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                        restartTimerExec();
+                    }
+                }
+                if (Properties.Settings.Default.r6a == true)
+                {
+                    if (currentTime.Hour == userTime6.Hour && currentTime.Minute == userTime6.Minute && currentTime.Second == userTime6.Second)
+                    {
+                        timer.Stop();
+                        RestartServer();
+                        Console.WriteLine("Fick dich Waal");
+
+                        // MessageBox.Show(userTime3.ToString("HH':'mm"));
+                        label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                        restartTimerExec();
+                    }
+                }
+                if (Properties.Settings.Default.r7a == true)
+                {
+                    if (currentTime.Hour == userTime7.Hour && currentTime.Minute == userTime7.Minute && currentTime.Second == userTime7.Second)
+                    {
+                        timer.Stop();
+                        RestartServer();
+                        Console.WriteLine("Fick dich Waal");
+
+                        // MessageBox.Show(userTime3.ToString("HH':'mm"));
+                        label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                        restartTimerExec();
+                    }
+                }
+                if (Properties.Settings.Default.r8a == true)
+                {
+                    if (currentTime.Hour == userTime8.Hour && currentTime.Minute == userTime8.Minute && currentTime.Second == userTime8.Second)
+                    {
+                        timer.Stop();
+                        RestartServer();
+                        Console.WriteLine("Fick dich Waal");
+
+                        // MessageBox.Show(userTime3.ToString("HH':'mm"));
+                        label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                        restartTimerExec();
+                    }
+                }
+                if (Properties.Settings.Default.r9a == true)
+                {
+                    if (currentTime.Hour == userTime9.Hour && currentTime.Minute == userTime9.Minute && currentTime.Second == userTime9.Second)
+                    {
+                        timer.Stop();
+                        RestartServer();
+                        Console.WriteLine("Fick dich Waal");
+
+                        // MessageBox.Show(userTime3.ToString("HH':'mm"));
+                        label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                        restartTimerExec();
+                    }
+                }
+                if (Properties.Settings.Default.r10a == true)
+                {
+                    if (currentTime.Hour == userTime10.Hour && currentTime.Minute == userTime10.Minute && currentTime.Second == userTime10.Second)
+                    {
+                        timer.Stop();
+                        RestartServer();
+                        Console.WriteLine("Fick dich Waal");
+
+                        // MessageBox.Show(userTime3.ToString("HH':'mm"));
+                        label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                        restartTimerExec();
+                    }
+                }
+
             }
             void restartTimerExec(){
                // Console.WriteLine("Fick dich Waal");
@@ -316,6 +480,7 @@ void RestartServer()
             {
 
                  Start();
+                
             }
             else
             {
@@ -340,10 +505,7 @@ void RestartServer()
             }
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         //** Just needed for debugging
 

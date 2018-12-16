@@ -57,6 +57,8 @@
             this.restartBox9 = new System.Windows.Forms.DateTimePicker();
             this.restartBox10 = new System.Windows.Forms.DateTimePicker();
             this.button2 = new System.Windows.Forms.Button();
+            this.otherArmaParBox = new System.Windows.Forms.TextBox();
+            this.battleeyebox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -85,9 +87,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label3.Location = new System.Drawing.Point(129, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 13);
+            this.label3.Size = new System.Drawing.Size(38, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "Profile";
             this.toolTip1.SetToolTip(this.label3, "The desired profile to load with DayZ. (must be a folder)");
@@ -95,22 +98,25 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label4.Location = new System.Drawing.Point(239, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(124, 13);
+            this.label4.Size = new System.Drawing.Size(126, 15);
             this.label4.TabIndex = 3;
             this.label4.Text = "other Startup Parameters";
-            this.toolTip1.SetToolTip(this.label4, "following page for more information https://forums.dayz.com/topic/239635-dayz-ser" +
-        "ver-files-documentation/?tab=comments#comment-2396561\r\nleave empty if not set\r\n");
+            this.toolTip1.SetToolTip(this.label4, "must be seperated by space to work. \"-\" needs to be in front of parameter.\r\ngoogl" +
+        "e extra parameters for more\r\n");
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(140, 63);
+            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label5.Location = new System.Drawing.Point(126, 63);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 13);
+            this.label5.Size = new System.Drawing.Size(105, 15);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Battleye path";
+            this.label5.Text = "Battleye folder name";
+            this.toolTip1.SetToolTip(this.label5, "needs to be in the server root");
             // 
             // label6
             // 
@@ -177,7 +183,7 @@
             // 
             // profileBox
             // 
-            this.profileBox.Location = new System.Drawing.Point(132, 25);
+            this.profileBox.Location = new System.Drawing.Point(129, 27);
             this.profileBox.Name = "profileBox";
             this.profileBox.Size = new System.Drawing.Size(74, 20);
             this.profileBox.TabIndex = 15;
@@ -195,16 +201,18 @@
             // label10
             // 
             this.label10.AutoSize = true;
+            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label10.Location = new System.Drawing.Point(484, 11);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(35, 13);
+            this.label10.Size = new System.Drawing.Size(37, 15);
             this.label10.TabIndex = 17;
             this.label10.Text = "Game";
+            this.toolTip1.SetToolTip(this.label10, "We currently only support the DayZ Stanalone. A2 A3 WIP");
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(449, 27);
+            this.comboBox2.Location = new System.Drawing.Point(451, 29);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(102, 21);
             this.comboBox2.TabIndex = 18;
@@ -309,11 +317,27 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // otherArmaParBox
+            // 
+            this.otherArmaParBox.Location = new System.Drawing.Point(239, 27);
+            this.otherArmaParBox.Name = "otherArmaParBox";
+            this.otherArmaParBox.Size = new System.Drawing.Size(100, 20);
+            this.otherArmaParBox.TabIndex = 32;
+            // 
+            // battleeyebox
+            // 
+            this.battleeyebox.Location = new System.Drawing.Point(126, 81);
+            this.battleeyebox.Name = "battleeyebox";
+            this.battleeyebox.Size = new System.Drawing.Size(100, 20);
+            this.battleeyebox.TabIndex = 34;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(598, 386);
+            this.Controls.Add(this.battleeyebox);
+            this.Controls.Add(this.otherArmaParBox);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.restartBox10);
             this.Controls.Add(this.restartBox9);
@@ -379,5 +403,7 @@
         private System.Windows.Forms.DateTimePicker restartBox9;
         private System.Windows.Forms.DateTimePicker restartBox10;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox otherArmaParBox;
+        private System.Windows.Forms.TextBox battleeyebox;
     }
 }
