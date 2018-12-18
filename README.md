@@ -6,6 +6,15 @@ Checks every 60 seconds if the server has crashed, and if so, it will automatica
 support command line attributes.
 support timed restarts(experimental)
 
+Update 17.12.2018:
+- 
+-now supports up to 10 restarts.
+
+-experimental support to mods has been added.
+
+-vanilla DayZ works without any problems, but i am yet to have tested server with mods, as i keep getting Wrong version messages.
+
+
 In the future:
 Sent messages if your server crashed
 maybe replacement for the shitty BEC
