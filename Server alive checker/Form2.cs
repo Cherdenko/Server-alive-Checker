@@ -22,6 +22,10 @@ namespace Server_alive_checker
            
             InitGame();
             boxes();
+            // currently disabled
+            serverModBox.Enabled = false;
+            serverModBox.Text = "This is currently disabled, as no official support for A3 will be given at this moment.";
+
         }
         void boxes()
         {
@@ -164,6 +168,12 @@ namespace Server_alive_checker
                
             }
         }
+
+
+
+       
+        
+        
         private void StandartInit()
         {
             
@@ -212,10 +222,11 @@ namespace Server_alive_checker
             comboBox2.ValueMember = "Value";
             var items2 = new[] {
             new { Text = "DayZ Standalone", Value = "1" }
-           // new { Text = "Arma 2", Value = "2" },
-          //  new { Text = "Arma 3", Value = "3" }
+         //   new { Text = "Arma 2", Value = "2" },
+         //  new { Text = "Arma 3", Value = "3" }
             };
             comboBox2.DataSource = items2;
+            
            
         }
 
@@ -493,6 +504,53 @@ namespace Server_alive_checker
               
             }
             box--;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var currentDirectory = System.IO.Directory.GetCurrentDirectory();
+            FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
+            folderBrowserDialog1.SelectedPath = currentDirectory;
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+           {
+               battleeyebox.Text = folderBrowserDialog1.SelectedPath;
+            }
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            var currentDirectory = System.IO.Directory.GetCurrentDirectory();
+            openFileDialog.InitialDirectory = currentDirectory;
+            openFileDialog.Filter = "config files (*.cfg)|*.cfg";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //Get the path of specified file
+                configBox.Text = openFileDialog.FileName;
+
+                //Read the contents of the file into a stream
+                
+
+                
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var currentDirectory = System.IO.Directory.GetCurrentDirectory();
+            FolderBrowserDialog folderBrowserDialog2 = new FolderBrowserDialog();
+            folderBrowserDialog2.SelectedPath = currentDirectory;
+            if (folderBrowserDialog2.ShowDialog() == DialogResult.OK)
+            {
+                profileBox.Text = folderBrowserDialog2.SelectedPath;
+            }
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

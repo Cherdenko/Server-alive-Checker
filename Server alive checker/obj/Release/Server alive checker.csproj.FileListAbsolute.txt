@@ -8,4 +8,3 @@ C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Re
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Release\Server alive checker.csproj.CoreCompileInputs.cache
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Release\Server alive checker.exe
 C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Release\Server alive checker.pdb
-C:\Users\Cherdenko\source\repos\Server alive checker\Server alive checker\obj\Release\Server alive checker.csprojAssemblyReference.cache

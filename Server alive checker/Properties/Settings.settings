@@ -14,9 +14,6 @@
     <Setting Name="saved" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="restarts" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="game" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>

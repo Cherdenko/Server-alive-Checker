@@ -13,11 +13,11 @@ using System.Diagnostics;
 
 /**todo
  * need to find a valid way to log if server is alive and when
- * interchangeable options for other games
- * a config file
- * replacement of start options
- * easy configurator for noobs
- * 
+ * interchangeable options for other games need to add the servermod command line for arma 3
+ * a config file done
+ * replacement of start options done
+ * easy configurator for noobs half past done
+ *  email notification if server goes down fix the problem of a restart being shown as crash
  * 
  * 
  * 
@@ -58,6 +58,7 @@ namespace Server_alive_checker
         string gameselected;
         bool restartTimerRunning = false;
         bool initializedrestartTimer = false;
+        bool justRestarted = false;
 
 
 
@@ -83,10 +84,7 @@ namespace Server_alive_checker
                 
                
             }
-            if (Properties.Settings.Default.restarts)
-            {
-                checkBox1.Checked = true;
-            }
+          
            
                 
             
@@ -112,17 +110,18 @@ namespace Server_alive_checker
 
         }
         // main start
-         void Start()
+        void Start()
         {
             label1.Show();
             label4.Show();
             label2.Show();
-            label3.Show();
+            // label3.Show();
             label5.Show();
 
             int x = Int32.Parse(Properties.Settings.Default.game);
 
-            switch (x) { 
+            switch (x)
+            {
                 case 1:
                     counter = 10;
                     gameselected = "\\DayZServer_x64.exe";
@@ -142,8 +141,8 @@ namespace Server_alive_checker
             {
                 label4.Text = "Server last crashed: never";
                 picyesno.BackColor = System.Drawing.Color.SpringGreen;
-                label1.Text = gameselected+ "exists";
-                Console.WriteLine(currentDirectory +gameselected);
+                label1.Text = gameselected + "exists";
+                Console.WriteLine(currentDirectory + gameselected);
                 Server_alive_checker();
 
             }
@@ -155,26 +154,27 @@ namespace Server_alive_checker
                 timer1.Tick += new EventHandler(Timer1_Tick);
                 timer1.Interval = 1000; // 1 second
                 timer1.Start();
-                label3.Hide();
+                // label3.Hide();
                 label2.Text = counter.ToString();
-                label1.Text = "Seems like there is no"+gameselected + " file in the directory of the Alive Checker. Programm will exit in";
-                
+                label1.Text = "Seems like there is no" + gameselected + " file in the directory of the Alive Checker. Programm will exit in";
+
 
 
             }
 
+        }
 
 
 
 
             // here we go check, if the process (in our case DayZ SA) is still alive. currently getting reworked, as of non functionality with .bat files.
 
-          void Server_alive_checker()
+            void Server_alive_checker()
             {
-                
+            var currentDirectory = System.IO.Directory.GetCurrentDirectory();
 
-                Process thisProc = Process.GetCurrentProcess();
-                if ((IsProcessOpen("DayZ") == false)|| (IsProcessOpen("Arma 3 (32 Bit)")) || (IsProcessOpen("Arma2 OA")))
+            Process thisProc = Process.GetCurrentProcess();
+                if ((IsProcessOpen("DayZ") == false)) //|| (IsProcessOpen("Arma 3 (32 Bit)")) || (IsProcessOpen("Arma2 OA"))
                 {
                     label1.Text="Application not running";
                     if (running == 2)
@@ -205,7 +205,7 @@ namespace Server_alive_checker
 
                           ProcessStartInfo Dayz = new ProcessStartInfo();
                         Dayz.FileName = currentDirectory + gameselected;
-                          Dayz.Arguments = "-config="+cfg+ " -profiles="+profiles+ " -port"+ port + " -BEPath=" + BePath + " " + otherArmaParBox + " -mod=" + mods;
+                          Dayz.Arguments = "-config="+cfg+ " -profiles="+profiles+ " -port"+ port + " -BEPath=" + BePath + " " + otherArmaParBox + " \"-mod=" + mods+ "\"";
 
                          Process.Start(Dayz); // working again without any problems
                         Refreshrate();
@@ -219,9 +219,16 @@ namespace Server_alive_checker
                         string otherArmaParBox = Properties.Settings.Default.otherArmaParBox;
                         string mods = Properties.Settings.Default.mods;
                         //small logging tool
-                        label1.Text = " " + DateTime.Now + " Server crashed. Restarting now." ;
-                       
+                        if (!justRestarted)
+                        {
+                            label1.Text = " " + DateTime.Now + " Server crashed. Restarting now.";
+                        
                         label4.Text = " Server last crashed at " + DateTime.Now;
+                        }
+                        else
+                        {
+                            label1.Text = " " + DateTime.Now + " Server just restarted succesfully";
+                        }
                         ProcessStartInfo Dayz = new ProcessStartInfo();
                         Dayz.FileName = currentDirectory + gameselected;
                         Dayz.Arguments = "-config=" + cfg + " -profiles=" + profiles + " -port" + port + " -BEPath="+BePath +" "+ otherArmaParBox + " -mod="+ mods;
@@ -263,16 +270,46 @@ namespace Server_alive_checker
                     DateTime userTime10 = Properties.Settings.Default.restartTime10;
                 if (!initializedrestartTimer)
                 {
-                    label7.Text = userTime1.ToString("HH':'mm");
-                    label8.Text = userTime2.ToString("HH':'mm");
-                    label9.Text = userTime3.ToString("HH':'mm");
-                    label10.Text = userTime4.ToString("HH':'mm");
-                    label11.Text = userTime5.ToString("HH':'mm");
-                    label12.Text = userTime6.ToString("HH':'mm");
-                    label13.Text = userTime7.ToString("HH':'mm");
-                    label14.Text = userTime8.ToString("HH':'mm");
-                    label15.Text = userTime9.ToString("HH':'mm");
-                    label16.Text = userTime10.ToString("HH':'mm");
+                    if (Properties.Settings.Default.r1a)
+                    {
+                        label7.Text = userTime1.ToString("HH':'mm");
+                    }
+                    if (Properties.Settings.Default.r2a)
+                    {
+                        label8.Text = userTime2.ToString("HH':'mm");
+                    }
+                    if (Properties.Settings.Default.r3a)
+                    {
+                        label9.Text = userTime3.ToString("HH':'mm");
+                    }
+                    if (Properties.Settings.Default.r4a)
+                    {
+                        label10.Text = userTime4.ToString("HH':'mm");
+                    }
+                    if (Properties.Settings.Default.r5a)
+                    {
+                        label11.Text = userTime5.ToString("HH':'mm");
+                    }
+                    if (Properties.Settings.Default.r6a)
+                    {
+                        label12.Text = userTime6.ToString("HH':'mm");
+                    }
+                    if (Properties.Settings.Default.r7a)
+                    {
+                        label13.Text = userTime7.ToString("HH':'mm");
+                    }
+                    if (Properties.Settings.Default.r8a)
+                    {
+                        label14.Text = userTime8.ToString("HH':'mm");
+                    }
+                    if (Properties.Settings.Default.r9a)
+                    {
+                        label15.Text = userTime9.ToString("HH':'mm");
+                    }
+                    if (Properties.Settings.Default.r10a)
+                    {
+                        label16.Text = userTime10.ToString("HH':'mm");
+                    }
                 }
 
                 if (Properties.Settings.Default.r1a == true) {
@@ -282,8 +319,9 @@ namespace Server_alive_checker
                     RestartServer();
                     Console.WriteLine("Fick dich Waal");
                     //MessageBox.Show(userTime1.ToString("HH':'mm"));
-                    label3.Text = "Server succesfully restarted @" +DateTime.Now;
+                    //label3.Text = "Server succesfully restarted @" +DateTime.Now;
                     restartTimerExec();
+                        justRestarted = true;
                 }
                 }
                 if (Properties.Settings.Default.r2a == true)
@@ -294,7 +332,7 @@ namespace Server_alive_checker
                     RestartServer();
                     Console.WriteLine("Fick dich Waal");
                     //MessageBox.Show(userTime2.ToString("HH':'mm"));
-                    label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                    //label3.Text = "Server succesfully restarted @" + DateTime.Now;
                     restartTimerExec();
                 }
             }
@@ -307,7 +345,7 @@ namespace Server_alive_checker
                         Console.WriteLine("Fick dich Waal");
 
                         // MessageBox.Show(userTime3.ToString("HH':'mm"));
-                        label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                        //label3.Text = "Server succesfully restarted @" + DateTime.Now;
                         restartTimerExec();
                     }
                 }
@@ -320,7 +358,7 @@ namespace Server_alive_checker
                         Console.WriteLine("Fick dich Waal");
 
                         // MessageBox.Show(userTime3.ToString("HH':'mm"));
-                        label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                      //  label3.Text = "Server succesfully restarted @" + DateTime.Now;
                         restartTimerExec();
                     }
                 }
@@ -333,7 +371,7 @@ namespace Server_alive_checker
                         Console.WriteLine("Fick dich Waal");
 
                         // MessageBox.Show(userTime3.ToString("HH':'mm"));
-                        label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                      //  label3.Text = "Server succesfully restarted @" + DateTime.Now;
                         restartTimerExec();
                     }
                 }
@@ -372,7 +410,7 @@ namespace Server_alive_checker
                         Console.WriteLine("Fick dich Waal");
 
                         // MessageBox.Show(userTime3.ToString("HH':'mm"));
-                        label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                        //label3.Text = "Server succesfully restarted @" + DateTime.Now;
                         restartTimerExec();
                     }
                 }
@@ -385,7 +423,7 @@ namespace Server_alive_checker
                         Console.WriteLine("Fick dich Waal");
 
                         // MessageBox.Show(userTime3.ToString("HH':'mm"));
-                        label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                        //label3.Text = "Server succesfully restarted @" + DateTime.Now;
                         restartTimerExec();
                     }
                 }
@@ -398,7 +436,7 @@ namespace Server_alive_checker
                         Console.WriteLine("Fick dich Waal");
 
                         // MessageBox.Show(userTime3.ToString("HH':'mm"));
-                        label3.Text = "Server succesfully restarted @" + DateTime.Now;
+                       // label3.Text = "Server succesfully restarted @" + DateTime.Now;
                         restartTimerExec();
                     }
                 }
@@ -448,21 +486,21 @@ namespace Server_alive_checker
                 label2.Text = counter.ToString();
 
             }
-
-        }
-// this is important for the server restart
-void RestartServer()
-        {
-            
-            foreach (var process in Process.GetProcessesByName("DayZServer_x64"))
+            void RestartServer()
             {
 
-                process.Kill();
-                
-            }
-            
+                foreach (var process in Process.GetProcessesByName("DayZServer_x64"))
+                {
 
-        }
+                    process.Kill();
+                counter = 15;
+                }
+
+              
+
+            }
+// this is important for the server restart
+
 
 // restartServer
 
@@ -481,6 +519,7 @@ void RestartServer()
 
                  Start();
                 
+                
             }
             else
             {
@@ -488,22 +527,6 @@ void RestartServer()
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox1.Checked)
-            {
-                MessageBox.Show("Restarts have ben enabled");
-                Properties.Settings.Default.restarts = true;
-                Properties.Settings.Default.Save();
-
-            }
-            else
-            {
-                Properties.Settings.Default.restarts = false;
-                Properties.Settings.Default.Save();
-                MessageBox.Show("Restarts are not enabled");
-            }
-        }
 
        
 
