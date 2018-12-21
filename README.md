@@ -5,7 +5,6 @@ replaces all of the batch files, so those are no longer needed to make the serve
 Checks every 60 seconds if the server has crashed, and if so, it will automatically restart.
 support command line attributes.
 support timed restarts(experimental)
-
 -
 Download Neweste Version [here](https://github.com/Cherdenko/Server-alive-Checker/releases/download/v.0.6.5/Release.v.0.6.5.rar)
 -
