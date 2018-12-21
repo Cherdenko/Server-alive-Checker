@@ -14,6 +14,10 @@ Update 17.12.2018:
 
 -vanilla DayZ works without any problems, but i am yet to have tested server with mods, as i keep getting Wrong version messages.
 
+Update 21.12.2018:
+- 
+-Log Rotator is working
+-made some improvements in the code and also worked further towards the goal of using this tool for multiple BI Games
 
 In the future:
 Sent messages if your server crashed
